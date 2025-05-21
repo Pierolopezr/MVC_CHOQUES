@@ -1,16 +1,20 @@
 import java.util.ArrayList;
 
 /**
- * Clase encargada de manejar los datos
+ * @author Piero López
+ * Clase encargada de manejar los datos de los coches.
+ * Implementa la lógica de acceso y modificación de datos.
  */
 public class Model {
+
+    // Almacén de coches creados
     static ArrayList<Coche> parking = new ArrayList<>();
 
     /**
-     * Crea un coche y lo mete en el parking
-     * @param modelo del coche
-     * @param matricula identificador unico
-     * @return el coche creado
+     * Crea un coche y lo añade al parking.
+     * @param modelo modelo del coche
+     * @param matricula identificador único
+     * @return coche creado
      */
     public static Coche crearCoche(String modelo, String matricula){
         Coche aux = new Coche(modelo, matricula);
@@ -19,41 +23,36 @@ public class Model {
     }
 
     /**
-     * Busca coche segun matricula
-     * @param matricula a buscar
-     * @return chche o null si no existe
+     * Busca un coche por matrícula.
+     * @param matricula matrícula a buscar
+     * @return coche encontrado o null
      */
     public static Coche getCoche(String matricula){
-        Coche aux = null;
-        // recorre el array buscando por matricula
         for (Coche e: parking) {
             if (e.matricula.equals(matricula)) {
-                aux = e;
+                return e;
             }
         }
-        return aux;
+        return null;
     }
 
     /**
-     * Cambia la velocidad de un coche
-     * @param matricula
+     * Cambia la velocidad de un coche.
+     * @param matricula del coche
      * @param v nueva velocidad
-     * @return velocidad modificada
+     * @return velocidad actualizada
      */
-    public int cambiarVelocidad(String matricula, Integer v) {
-        // busca el coche
+    public static int cambiarVelocidad(String matricula, Integer v) {
         getCoche(matricula).velocidad = v;
-        // retorna la nueva velocidad
         return getCoche(matricula).velocidad;
     }
 
     /**
-     * Ddevuelve la velocidad segun la matricula
-     * @param matricula
-     * @return
+     * Obtiene la velocidad actual del coche por su matrícula.
+     * @param matricula del coche
+     * @return velocidad actual
      */
     public static int getVelocidad(String matricula) {
-
         return getCoche(matricula).velocidad;
     }
 }
