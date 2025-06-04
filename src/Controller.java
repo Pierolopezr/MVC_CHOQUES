@@ -85,4 +85,25 @@ public class Controller {
         }
         return datosCoches;
     }
+
+    // Este método se encarga de añadir gasolina a un coche.
+    // Pide al usuario la matrícula y la cantidad de litros, luego llama al modelo para hacer la operación.
+    // Devuelve un mensaje de confirmación.
+    public static String añadirGasolina() {
+        String matricula = View.pedirMatricula("Matricula del coche:");
+        int litros = View.pedirCantidad("Cuantos litros de gasolina deseas añadir?");
+        Model.añadirGasolina(matricula, litros);
+        return "Gasolina añadida.";
+    }
+
+    // Este método permite avanzar un coche una cierta distancia.
+    // Pide al usuario la matrícula y los metros que desea avanzar.
+    // El modelo calcula si puede avanzar en base a la gasolina.
+    // Si no tiene gasolina suficiente, retorna un mensaje de advertencia.
+    public static String avanzar() {
+        String matricula = View.pedirMatricula("Matricula del coche:");
+        int metros = View.pedirCantidad("Cuántos metros quieres avanzar?");
+        boolean ok = Model.avanzar(matricula, metros);
+        return ok ? "El coche avanzó" : "No hay suficiente gasolina para avanzar.";
+    }
 }

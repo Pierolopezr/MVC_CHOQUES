@@ -204,3 +204,32 @@ sequenceDiagram
     
 ```
 
+
+### 🚨 Diagrama de secuencia con Observer
+
+```mermaid
+sequenceDiagram
+    participant View
+    participant Controller
+    participant Model
+    participant Coche
+    participant Alarma
+
+    View->>Controller: avanzar()
+    Controller->>View: pedirMatricula()
+    View-->>Controller: String (matrícula)
+    Controller->>View: pedirCantidad()
+    View-->>Controller: int (metros)
+
+    Controller->>Model: avanzar(String, int)
+    Model->>Coche: avanzar(metros)
+    Coche->>Coche: calcular consumo y restar gasolina
+    Coche-->>Coche: gasolina < 10L?
+    alt Si gasolina baja de 10
+        Coche->>Alarma: alertaGasolinaBaja(coche)
+        Alarma-->>View: "⚠️ Alerta: Repostar"
+    end
+    Coche-->>Model: true/false
+    Model-->>Controller: true/false
+    Controller-->>View: mensaje avance o sin gasolina
+```

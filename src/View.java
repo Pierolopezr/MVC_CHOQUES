@@ -20,6 +20,8 @@ public class View {
             System.out.println("2, subir velocidad");
             System.out.println("3, bajar velocidad");
             System.out.println("4, Mostrar todos los coches");
+            System.out.println("5, Añadir gasolina");
+            System.out.println("6, Avanzar");
             System.out.println("0, Salir");
 
             accion = sc.nextInt();
@@ -30,6 +32,8 @@ public class View {
                 case 2 -> System.out.println(Controller.subirVelocidad());
                 case 3 -> System.out.println(Controller.bajarVelocidad());
                 case 4 -> System.out.println(Controller.mostrarCoches());
+                case 5 -> System.out.println(Controller.añadirGasolina());
+                case 6 -> System.out.println(Controller.avanzar());
                 default -> accion = 0; // Salida
             }
         }
@@ -63,6 +67,12 @@ public class View {
      * @return velocidad ingresada
      */
     public static int pedirVelocidad(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(msg);
+        return sc.nextInt();
+    }
+
+    public static int pedirCantidad(String msg){
         Scanner sc = new Scanner(System.in);
         System.out.println(msg);
         return sc.nextInt();
